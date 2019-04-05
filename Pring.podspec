@@ -20,6 +20,7 @@ Pring is a framework for defining Firestore's Model. You can seamlessly manage F
   s.source_files  = "Pring/**/*.swift"
   s.requires_arc = true
   s.static_framework = true
+  s.swift_version = "5.0"
   s.dependency "Firebase/Core", '~> 5.0'
   s.dependency "Firebase/Firestore"
   s.dependency "Firebase/Storage"

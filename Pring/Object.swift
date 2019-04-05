@@ -706,7 +706,7 @@ open class Object: NSObject, Document {
 }
 
 extension Object {
-    open override var hashValue: Int {
+    open override var hash: Int {
         return self.id.hash
     }
     public static func == (lhs: Object, rhs: Object) -> Bool {
