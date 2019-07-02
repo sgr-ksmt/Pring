@@ -210,7 +210,7 @@ open class SubCollection<T: Document>: AnySubCollection, ExpressibleByArrayLiter
 
 public extension SubCollection {
 
-    public func get(_ id: String, block: @escaping (Element?, Error?) -> Void) {
+    func get(_ id: String, block: @escaping (Element?, Error?) -> Void) {
         self.reference.document(id).getDocument { (snapshot, error) in
             guard let snapshot: DocumentSnapshot = snapshot, snapshot.exists else {
                 block(nil, error)
@@ -224,7 +224,7 @@ public extension SubCollection {
         }
     }
 
-    public func listen(_ id: String, block: @escaping (Element?, Error?) -> Void) -> ListenerRegistration {
+    func listen(_ id: String, block: @escaping (Element?, Error?) -> Void) -> ListenerRegistration {
         return self.reference.document(id).addSnapshotListener(includeMetadataChanges: true) { (snapshot, error) in
             guard let snapshot: DocumentSnapshot = snapshot else {
                 block(nil, error)
@@ -238,7 +238,7 @@ public extension SubCollection {
         }
     }
 
-    public func listen(_ id: String, block: @escaping (Element?, Error?) -> Void) -> Disposer<Element> {
+    func listen(_ id: String, block: @escaping (Element?, Error?) -> Void) -> Disposer<Element> {
         return .init(.value(listen(id, block: block)))
     }
 }
@@ -266,7 +266,7 @@ extension SubCollection: Collection {
     }
 
     public func index(where predicate: (T) throws -> Bool) rethrows -> Int? {
-        return try _self.index(where: predicate)
+        return try _self.firstIndex(where: predicate)
     }
 
     public func index(after i: Int) -> Int {

@@ -26,9 +26,6 @@ open class Object: NSObject, Document {
 
     open class var reference: CollectionReference {
         let db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
         return db.collection(self.path)
     }
 
@@ -373,7 +370,7 @@ open class Object: NSObject, Document {
                             self.update(key: key, value: FieldValue.delete())
                         }
 
-                        if let index: Int = self.garbages.index(of: currentFile) {
+                        if let index: Int = self.garbages.firstIndex(of: currentFile) {
                             self.garbages.remove(at: index)
                         }
 
@@ -400,7 +397,7 @@ open class Object: NSObject, Document {
 
                         new.subtracting(old).forEach { file in
                             file.setParent(self, forKey: key)
-                            if let index: Int = self.garbages.index(of: file) {
+                            if let index: Int = self.garbages.firstIndex(of: file) {
                                 self.garbages.remove(at: index)
                             }
                         }

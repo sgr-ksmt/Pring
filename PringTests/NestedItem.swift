@@ -25,7 +25,7 @@ class NestedItem: Object {
     dynamic var geoPoint: GeoPoint                  = GeoPoint(latitude: 0, longitude: 0)
     dynamic var dictionary: [AnyHashable: Any]      = ["key": "nested"]
     dynamic var string: String                      = "nested"
-    dynamic var file: File                          = File(data: UIImagePNGRepresentation(TestDocument.image0())!, mimeType: .png)
+    dynamic var file: File                          = File(data: TestDocument.image0().pngData()!, mimeType: .png)
 
     let referenceCollection: ReferenceCollection<TestDocument>  = []
     let nextedCollection: NestedCollection<NestedItem>          = []
